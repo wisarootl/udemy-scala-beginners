@@ -149,23 +149,38 @@ object ListTest extends App {
   val anotherListOfIntegers: MyList[Int] = new Cons(4, new Cons(5, Empty))
   val listOfStrings: MyList[String] = new Cons("Hello", new Cons("Scala", Empty))
 
+  println("=== toString ===")
   println(listOfIntegers.toString)
   println(listOfStrings.toString)
 
+  println("\n=== map ===")
   println(listOfIntegers.map(_ * 2).toString)
 
+  println("\n=== filter ===")
   println(listOfIntegers.filter(_ % 2 == 0).toString)
 
+  println("\n=== ++ ===")
   println((listOfIntegers ++ anotherListOfIntegers).toString)
+
+  println("\n=== flatMap ===")
   println(listOfIntegers.flatMap(elem => new Cons(elem, new Cons(elem + 1, Empty))).toString)
 
+  println("\n=== equal ===")
   println(cloneListOfIntegers == listOfIntegers)
 
+  println("\n=== foreach ===")
   listOfIntegers.foreach(println)
+
+  println("\n=== sort ===")
   println(listOfIntegers.sort((x, y) => y - x))
+
+  println("\n=== zipWith ===")
   println(anotherListOfIntegers.zipWith[String, String](listOfStrings, _ + "-" + _))
+
+  println("\n=== fold ===")
   println(listOfIntegers.fold(0)(_ + _))
 
+  println("\n=== for comprehensions ===")
   // for comprehensions
   val combinations = for {
     n <- listOfIntegers
